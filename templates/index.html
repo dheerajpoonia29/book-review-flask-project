@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+
+
+    {% block title %}
+        <title>index.html</title>
+    {% endblock %}
+
+
+    {% block style %}
+        <style>
+        </style>
+    {% endblock %}
+
+
+    {% block heading %}      
+        <h2>PIET CENTRAL LIBRARY</h2>
+        <h3>book review website</h3>      
+    {% endblock %}
+
+
+    {% block body %}
+        <ul>
+                <li><a href="{{ url_for('register') }}">Sign-up</a></li>
+                <li><a href="{{ url_for('login') }}">Log-in</a></li>
+        </ul>
+    {% endblock %}
+
