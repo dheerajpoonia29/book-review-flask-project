@@ -1,0 +1,58 @@
+{% extends "layout.html" %}
+
+
+    {% block title %}
+        <title>viewreview.html</title>
+    {% endblock %}
+
+
+    {% block style %}
+        <style>
+            table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+            }
+        </style>
+    {% endblock %}
+
+
+    {% block navbarTitle %}
+        <h5>{{ username }}</h5>
+    {% endblock %}
+
+    
+    {% block url %}
+    login.html> book.html> viewreview.html
+    {% endblock %}
+
+
+    {% block heading %}  
+    {% endblock %}
+
+
+    {% block body %}
+    <div class="container">
+        <div class="reviewtable">
+            {% for x in range(5) %}
+                <p><strong>book name</strong>, publisher</p>
+                <table  style="width:100%">
+                        <tr>
+                                <th>Review By</th>
+                                <th>Scale</th>
+                                <th>Review</th>
+                        </tr>
+                        
+                        {% for x in range(10) %}
+                        <tr>
+                            <td>dheeraj</td>
+                            <td>8</td>
+                            <td>awesome book</td>
+                        </tr>
+                        {% endfor %}
+                </table>
+            {% endfor %}
+        </div>
+    </div>
+    {% endblock %}
+
+

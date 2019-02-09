@@ -1,0 +1,9 @@
+ul > li {
+    list-style-type: none;
+    display: inline;
+}
+.navbar-brand  img
+{
+    width: 30px;
+    height: 30px;
+}

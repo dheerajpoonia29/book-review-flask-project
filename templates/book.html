@@ -2,21 +2,109 @@
 
 
     {% block title %}
-        <title>books.html</title>
+        <title>success.html</title>
     {% endblock %}
 
 
     {% block style %}
         <style>
+            table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+            }
+
         </style>
     {% endblock %}
 
 
+    {% block navbarTitle %}
+        <h5>{{ username }}</h5>
+    {% endblock %}
+
+    
+    {% block url %}
+        login.html> book.html
+    {% endblock %}
+
+
     {% block heading %}  
-        <h1>SEARCH AND REVIEW BOOKS</h1>          
     {% endblock %}
 
 
     {% block body %}
+    <div class="container">
+        <div class="bookdbsearch">
+            <div class="row">
+
+
+                <form class="col-lg-3 input-group">
+                    <input type="text" class="form-control form-control-sm" placeholder="Book isbnNo" aria-label="Book isbnNo" aria-describedby="basic-addon2">
+                    <div class="input-group-append">
+                        <button class="btn btn-sm btn-outline-white" type="button">find</button>
+                    </div>
+                </form>
+
+                <form class="col-lg-3 input-group">
+                        <input type="text" class="form-control form-control-sm" placeholder="Book title" aria-label="Book isbnNo" aria-describedby="basic-addon2">
+                        <div class="input-group-append">
+                            <button class="btn btn-sm btn-outline-white" type="button">find</button>
+                        </div>
+                </form>
+
+                <form class="col-lg-3 input-group">
+                        <input type="text" class="form-control form-control-sm" placeholder="Book author" aria-label="Book author" aria-describedby="basic-addon2">
+                        <div class="input-group-append">
+                            <button class="btn btn-sm btn-outline-white" type="button">find</button>
+                        </div>
+                </form>
+
+                <form class="col-lg-3 input-group">
+                        <input type="text" class="form-control form-control-sm" placeholder="Book year" aria-label="Book year" aria-describedby="basic-addon2">
+                        <div class="input-group-append">
+                            <button class="btn btn-sm btn-outline-white" type="button">find</button>
+                        </div>
+                </form>
+
+
+            </div>
+        </div>
+
+        <div class="container booksearchresult">
+            <form class="form-horizontal" action="{{ url_for('givereview') }}" method="POST">
+                <ul>
+                    <li><input type="checkbox" name="selectedbook"></li>
+                    <li>sbi0041</li>
+                    <li>title</li>
+                    <li>author</li>
+                    <li>year</li>
+                </ul>
+                <div class="form-group form-inline">
+                        <button type="submit" class="btn btn-default">Give Review</button>
+                        <a href="{{ url_for('viewreview') }}">  view review</a>
+                </div>
+            </form>
+        </div>
+
+        <div class="bookdbtable">
+                <table style="width:100%">
+                        <tr>
+                                <th>Isbn No</th>
+                                <th>Title</th> 
+                                <th>Author</th>
+                                <th>Year</th>
+                        </tr>
+                        {% for x in range(10) %}
+                        <tr>
+                            <td>1</td>
+                            <td>c++</td>
+                            <td>dheeraj</td>
+                            <td>2019</td>
+                        </tr>
+                        {% endfor %}
+                </table>
+        </div>
+        
+    </div>
     {% endblock %}
+
 

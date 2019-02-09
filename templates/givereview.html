@@ -1,0 +1,59 @@
+{% extends "layout.html" %}
+
+
+    {% block title %}
+        <title>givereview.html</title>
+    {% endblock %}
+
+
+    {% block style %}
+        <style>
+            
+        </style>
+    {% endblock %}
+
+
+    {% block navbarTitle %}
+        <h5>{{ username }}</h5>
+    {% endblock %}
+
+    
+    {% block url %}
+    login.html> book.html> givereview.html
+    {% endblock %}
+
+
+    {% block heading %}  
+    {% endblock %}
+
+
+    {% block body %}
+    <div class="container">
+        <div class="container selectedbook">
+                <ul>
+                        <li>sbi0041</li>
+                        <li>title</li>
+                        <li>author</li>
+                        <li>year</li>
+                    </ul>
+        </div>
+        <div class="container reviewbook">
+                <form class="form-horizontal" action="{{ url_for('savereview') }}" method="POST">
+                        <div class="form-group form-inline">
+                            <label class="control-label col-sm-3" for="pwd">Scale:</label>
+                            <input type="range" class="form-control" type="range" name="scale">
+                        </div>
+                        <div class="form-group form-inline">
+                          <label class="control-label col-sm-3" for="email">Text:</label>
+                          <input type="text" class="form-control" type="text" name="text" placeholder="Insert review">
+                        </div>
+                        
+                        <div class="form-group form-inline">
+                            <button type="submit" class="btn btn-default">Submit</button>
+                        </div>
+                </form> 
+        </div>     
+    </div>
+    {% endblock %}
+
+

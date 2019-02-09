@@ -1,0 +1,44 @@
+{% extends "layout.html" %}
+
+
+    {% block title %}
+        <title>register.html</title>
+    {% endblock %}
+
+
+    {% block style %}
+        <style>
+            
+        </style>
+    {% endblock %}
+
+    
+    {% block url %}
+    index.html> register.html
+    {% endblock %}
+
+
+    {% block heading %}  
+    {% endblock %}
+
+
+    {% block body %}
+    <div class="container">
+      <form class="form-horizontal" action="{{ url_for('register') }}" method="post">
+          <div class="form-group form-inline">
+            <label class="control-label col-sm-3" for="email">Username:</label>
+            <input type="text" class="form-control" type="text" name="username" placeholder="Enter username">
+          </div>
+          <div class="form-group form-inline">
+            <label class="control-label col-sm-3" for="pwd">Password:</label>
+            <input type="password" class="form-control" type="text" name="password" placeholder="Enter password">
+          </div>
+          <div class="form-group form-inline">
+              <button type="submit" class="btn btn-default">Submit</button>
+          </div>
+          </div>
+        </form> 
+    </div>
+    {% endblock %}
+
+

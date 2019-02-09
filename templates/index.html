@@ -8,20 +8,42 @@
 
     {% block style %}
         <style>
+            ul li{
+            display: inline;
+            list-style-type: none;
+            }
         </style>
     {% endblock %}
 
+    {% block navbarTitle %}
+    Welcome
+    {% endblock %}
+    
+    {% block url %}
+    login.html
+    {% endblock %}
 
-    {% block heading %}      
-        <h2>PIET CENTRAL LIBRARY</h2>
-        <h3>book review website</h3>      
+
+    {% block heading %}  
     {% endblock %}
 
 
     {% block body %}
-        <ul>
-                <li><a href="{{ url_for('register') }}">Sign-up</a></li>
-                <li><a href="{{ url_for('login') }}">Log-in</a></li>
-        </ul>
+    <div class="container">
+        <form class="form-horizontal" action="{{ url_for('login') }}" method="POST">
+            <div class="form-group form-inline">
+              <label class="control-label col-sm-3" for="email">Username:</label>
+              <input type="text" class="form-control" type="text" name="username" placeholder="Enter username">
+            </div>
+            <div class="form-group form-inline">
+              <label class="control-label col-sm-3" for="pwd">Password:</label>
+              <input type="password" class="form-control" type="text" name="password" placeholder="Enter password">
+            </div>
+            <div class="form-group form-inline">
+                <button type="submit" class="btn btn-default">Login</button>
+                <a href="{{ url_for('createaccount') }}">Create account</a>
+            </div>
+        </form> 
+    </div>
     {% endblock %}
 

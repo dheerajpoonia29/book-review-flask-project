@@ -1,0 +1,10 @@
+Flask
+Flask-Session
+psycopg2
+SQLAlchemy
+
+alembic
+Flask-Migrate
+Flask-Script
+Flask-SQLAlchemy
+psycopg2
