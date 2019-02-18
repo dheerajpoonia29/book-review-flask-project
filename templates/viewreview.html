@@ -22,7 +22,7 @@
 
     
     {% block url %}
-        login.html> book.html> viewreview.html
+        login.html> book.html> givereview.html> viewreview.html
     {% endblock %}
 
 
@@ -34,24 +34,24 @@
     {% block body %}
     <div class="container">
         <div class="reviewtable">
-            {% for x in range(5) %}
-                <p><strong>book name</strong>, publisher</p>
+            <p><strong>book name</strong>, publisher</p>
                 <table  style="width:100%">
                         <tr>
-                                <th>Review By</th>
+                                <th>Stu Id</th>
+                                <th>Book Id</th>
                                 <th>Scale</th>
                                 <th>Review</th>
                         </tr>
                         
-                        {% for x in range(10) %}
+                        {% for x in review %}
                         <tr>
-                            <td>dheeraj</td>
-                            <td>8</td>
-                            <td>awesome book</td>
+                            <td>{{ x.student }}</td>
+                            <td>{{ x.book }}</td>
+                            <td>{{ x.scale }}</td>
+                            <td>{{ x.texts }}</td>
                         </tr>
                         {% endfor %}
                 </table>
-            {% endfor %}
         </div>
     </div>
     {% endblock %}

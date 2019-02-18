@@ -2,7 +2,7 @@
 
 
     {% block title %}
-        <title>success.html</title>
+        <title>book.html</title>
     {% endblock %}
 
 
@@ -50,7 +50,7 @@
                         </header>
                         {% for b in books %}
                         <tr>
-                            <td><a href="{{ url_for('givereview,book_id=b.book_id') }}">{{ b.isbn }}</a></td>
+                            <td><a href="{{ url_for('givereview',book_id=b.book_id) }}">{{ b.isbn }}</a></td>
                             <td>{{b.title}}</td>
                             <td>{{b.author}}</td>
                             <td>{{b.years}}</td>
