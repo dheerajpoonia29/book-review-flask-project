@@ -28,6 +28,7 @@
 
 
     {% block heading %}  
+        <h2>{{ error }}</h2>
     {% endblock %}
 
 
@@ -35,70 +36,24 @@
     <div class="container">
         <div class="bookdbsearch">
             <div class="row">
-
-
-                <form class="col-lg-3 input-group">
-                    <input type="text" class="form-control form-control-sm" placeholder="Book isbnNo" aria-label="Book isbnNo" aria-describedby="basic-addon2">
-                    <div class="input-group-append">
-                        <button class="btn btn-sm btn-outline-white" type="button">find</button>
-                    </div>
-                </form>
-
-                <form class="col-lg-3 input-group">
-                        <input type="text" class="form-control form-control-sm" placeholder="Book title" aria-label="Book isbnNo" aria-describedby="basic-addon2">
-                        <div class="input-group-append">
-                            <button class="btn btn-sm btn-outline-white" type="button">find</button>
-                        </div>
-                </form>
-
-                <form class="col-lg-3 input-group">
-                        <input type="text" class="form-control form-control-sm" placeholder="Book author" aria-label="Book author" aria-describedby="basic-addon2">
-                        <div class="input-group-append">
-                            <button class="btn btn-sm btn-outline-white" type="button">find</button>
-                        </div>
-                </form>
-
-                <form class="col-lg-3 input-group">
-                        <input type="text" class="form-control form-control-sm" placeholder="Book year" aria-label="Book year" aria-describedby="basic-addon2">
-                        <div class="input-group-append">
-                            <button class="btn btn-sm btn-outline-white" type="button">find</button>
-                        </div>
-                </form>
-
-
+                <h4>search book</h4>
             </div>
-        </div>
-
-        <div class="container booksearchresult">
-            <form class="form-horizontal" action="{{ url_for('givereview') }}" method="POST">
-                <ul>
-                    <li><input type="checkbox" name="selectedbook"></li>
-                    <li>sbi0041</li>
-                    <li>title</li>
-                    <li>author</li>
-                    <li>year</li>
-                </ul>
-                <div class="form-group form-inline">
-                        <button type="submit" class="btn btn-default">Give Review</button>
-                        <a href="{{ url_for('viewreview') }}">  view review</a>
-                </div>
-            </form>
         </div>
 
         <div class="bookdbtable">
                 <table style="width:100%">
-                        <tr>
+                        <header>
                                 <th>Isbn No</th>
                                 <th>Title</th> 
                                 <th>Author</th>
                                 <th>Year</th>
-                        </tr>
-                        {% for x in range(10) %}
+                        </header>
+                        {% for b in books %}
                         <tr>
-                            <td>1</td>
-                            <td>c++</td>
-                            <td>dheeraj</td>
-                            <td>2019</td>
+                            <td><a href="{{ url_for('givereview,book_id=b.book_id') }}">{{ b.isbn }}</a></td>
+                            <td>{{b.title}}</td>
+                            <td>{{b.author}}</td>
+                            <td>{{b.years}}</td>
                         </tr>
                         {% endfor %}
                 </table>
