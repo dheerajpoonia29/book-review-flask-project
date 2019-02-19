@@ -24,24 +24,45 @@
 
 
     {% block heading %}  
-        <h2>{{ error }}</h2>
+    {{ url_for('index') }}
+    <h2>{{ error }}</h2>
+    <form action="{{ url_for('index') }}" class="form-group inline" method="post">
+                <button type="submit" class="btn btn-primary float-right">Logout</button>
+                <a class="btn btn-default float-right" href="#" class="float-right">Books</a>
+            </form> 
     {% endblock %}
 
 
     {% block body %}
     <div class="container">
         <div class="container selectedbook">
-            book {{ book.isbn }}, title {{book.title}} written by {{book.author}}, publish in {{book.years}}
+                <table  style="width:100%">
+                        <tr>
+                                <th>Book isbn no</th>
+                                <th>Book Title</th>
+                                <th>Author Name</th>
+                                <th>Published In</th>
+                        </tr>
+                        
+                        <tr>
+                            <td>{{ book.isbn }}</td>
+                            <td>{{ book.title }}</td>
+                            <td>{{ book.author }}</td>
+                            <td>{{ book.years }}</td>
+                        </tr>
+                        
+                </table>
         </div>
+        <hr/>
         <div class="container reviewbook">
                 <form class="form-horizontal" action="{{ url_for('savereview',book_id=book.book_id) }}" method="POST">
                         <div class="form-group form-inline">
                             <label class="control-label col-sm-3" for="pwd">Scale:</label>
-                            <input type="range" class="f    orm-control" name="star" min="0" max="10">
+                            <input type="range" class="form-control" name="star" min="0" max="10" required>
                         </div>
                         <div class="form-group form-inline">
                           <label class="control-label col-sm-3" for="email">Text:</label>
-                          <input type="text" class="form-control" type="text" name="texts" placeholder="Insert review">
+                          <input type="text" class="form-control" type="text" name="texts" placeholder="Insert review" required>
                         </div>
                         
                         <div class="form-group form-inline">

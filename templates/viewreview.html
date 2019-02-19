@@ -26,18 +26,23 @@
     {% endblock %}
 
 
-    {% block heading %}  
-        <h2>{{ error }}</h2>
+    {% block heading %} 
+    <h2>{{ error }}</h2>
+    <form action="{{ url_for('index') }}" class="form-group inline" method="post">
+                <button type="submit" class="btn btn-primary float-right">Logout</button>
+                <a class="btn btn-default float-right" href="#" class="float-right">Books</a>
+            </form> 
     {% endblock %}
 
+    
 
     {% block body %}
+    <hr/>
     <div class="container">
         <div class="reviewtable">
-            <p><strong>book name</strong>, publisher</p>
                 <table  style="width:100%">
                         <tr>
-                                <th>Stu Id</th>
+                                <th>Student Id</th>
                                 <th>Book Id</th>
                                 <th>Scale</th>
                                 <th>Review</th>

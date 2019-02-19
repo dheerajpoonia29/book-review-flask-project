@@ -27,8 +27,12 @@
     {% endblock %}
 
 
-    {% block heading %}  
-        <h2>{{ error }}</h2>
+    {% block heading %} 
+    <h2>{{ error }}</h2>
+    <form action="{{ url_for('index') }}" class="form-group inline" method="post">
+                <button type="submit" class="btn btn-primary float-right">Logout</button>
+                <a class="btn btn-default float-right" href="{{ url_for('viewreview') }}">view review</a>
+            </form> 
     {% endblock %}
 
 
@@ -36,10 +40,16 @@
     <div class="container">
         <div class="bookdbsearch">
             <div class="row">
-                <h4>search book</h4>
+                    <form action="#" method="POST">
+                        <div class="form-group form-inline">
+                            <label class="control-label" for="pwd">Search book here: </label>
+                            <input type="text" class="form-control" type="text" name="bsearch" placeholder="Enter any one book title, author name, isbn" required>
+                            <button type="submit" class="btn btn-default">search</button>
+                        </div>
+                    </form>
             </div>
         </div>
-
+        <hr/>
         <div class="bookdbtable">
                 <table style="width:100%">
                         <header>

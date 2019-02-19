@@ -16,9 +16,13 @@ app.config["SESSION_TYPE"] = "filesystem"
 Session(app)
 username = None
 
-@app.route("/")
+@app.route("/", methods=['GET', 'POST'])
 def index():
-       return render_template("index.html",error="Login to give book review",username="Not Login")
+       session.pop('username', None)
+       if request.method == 'POST':
+              return render_template("index.html",error="Logout! Pleasure to see you again",username="Good Bye")
+       
+       return render_template("index.html",error="Msg- Login to give review on book",username="Welcome")
 
 
 # after login main (book) section start here
@@ -27,7 +31,7 @@ def index():
 def givereview(book_id):  
        username = session.get('username')
        bookselect = db.execute("SELECT * FROM book WHERE book_id = :book_id", {"book_id": book_id}).fetchone()
-       return render_template("givereview.html", book=bookselect, error="this is your selected book give review",username=username)
+       return render_template("givereview.html", book=bookselect, error="Msg- This is your selected book give review now",username=username)
 
 
 
@@ -42,18 +46,31 @@ def savereview(book_id):
               student_id = sid[0]
               bid = db.execute("SELECT book_id FROM book WHERE book_id = :book_id", {"book_id": book_id}).fetchone();
               book_id = bid[0]
-              db.execute("INSERT INTO review (scale, texts, student, book) VALUES (:scale, :texts, :student, :book)",
-                    {"scale": scale, "texts": texts, "student": student_id, "book": book_id})
-              db.commit()
-              return "review saved succesfull"
+              
+              booksdb = db.execute("SELECT * FROM book LIMIT 10 ").fetchall()
+
+              if db.execute("SELECT * FROM review WHERE student = :student_id and book = :book_id", {"student_id": student_id, "book_id": book_id}).rowcount == 0:
+                     db.execute("INSERT INTO review (scale, texts, student, book) VALUES (:scale, :texts, :student, :book)",
+                            {"scale": scale, "texts": texts, "student": student_id, "book": book_id})
+                     db.commit()
+                     return render_template("book.html", books=booksdb, error="Success! Review save successfull, click on view review", username=username)
+
+              return render_template("book.html", books=booksdb, error="Error! Select another book, You give review on this book", username=username)
               
 
 
 @app.route("/viewreview")
 def viewreview():
        username = session.get('username')
-       usrreview = db.execute("SELECT * FROM review").fetchall();
-       return render_template("viewreview.html", review=usrreview, error="Your total review list", username=username)
+       if(username is None):
+              return render_template("index.html",error="Error! Login first to view your review",username="Login First")
+       
+       sid = db.execute("SELECT student_id FROM student WHERE username = :username", {"username": username}).fetchone();
+       student_id = sid[0]
+       usrreview = db.execute("SELECT * FROM review where student = :student_id", {"student_id": student_id}).fetchall();
+       
+       
+       return render_template("viewreview.html", review=usrreview, error="Msg- Your total books review list", username=username)
 
 
 
@@ -66,23 +83,23 @@ def login():
               username = request.form.get('username')
               password = request.form.get('password')
               if db.execute("SELECT username FROM student WHERE username = :username", {"username": username}).rowcount == 0:
-                     return render_template("createaccount.html", error="Account not exits, create account first")
+                     return render_template("createaccount.html", error="Error! Account not exits, create account first")
               else:
                      raw_password = db.execute("SELECT passwrd FROM student WHERE username = :username", {"username": username}).fetchone()
                      password_db = raw_password[0]
                      if(password == password_db):
+                            booksdb = db.execute("SELECT * FROM book LIMIT 10").fetchall()
                             session['username'] = username
-                            booksdb = db.execute("SELECT * FROM book ").fetchall()
-                            return render_template("book.html", books=booksdb, error="login succesfull, select book to give review", username=username)
+                            return render_template("book.html", books=booksdb, error="Msg- Select book by click on isbn no or search to give review", username=username)
                      else:
-                            return render_template("index.html",error="Try login again, password not match",username="Not Login")
+                            return render_template("index.html",error="Error! Try login again, password not match",username="Login First")
        else:
-              return render_template("index.html",error="something went wrong, try again",username="Not Login")
+              return render_template("index.html",error="Error! Fill the login form first",username="Login First")
 
 
 @app.route("/createaccount")
 def createaccount():
-       return render_template("createaccount.html",error="welcome new user",username="Not Login")
+       return render_template("createaccount.html",error="Msg- Welcome you on book review application",username="Welcome")
 
 
 @app.route("/register", methods=['GET', 'POST'])
@@ -94,13 +111,13 @@ def register():
               db.execute("INSERT INTO student (username, passwrd) VALUES (:username, :passwrd)",
                     {"username": username, "passwrd": password})
               db.commit()
-              return render_template("index.html", name=username,error="account create success, login now" )
+              return render_template("index.html", name=username,error="Sucess! Account create successfull, login now" )
 
        
        else:
-              return render_template("index.html", error="Username exist, login now")
+              return render_template("index.html", error="Msg- Username exist, login now")
 
-       return render_template("createaccount.html", errro="something went wrong try again")
+       return render_template("createaccount.html", errro="Error! Something went wrong try again")
 
 
 
