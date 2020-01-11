@@ -120,5 +120,5 @@ def register():
        return render_template("createaccount.html", errro="Error! Something went wrong try again")
 
 
-
-
+if __name__ == "__main__":
+    app.run(debug=True)
