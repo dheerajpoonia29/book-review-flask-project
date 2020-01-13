@@ -22,7 +22,7 @@ def index():
        if request.method == 'POST':
               return render_template("index.html",error="Logout! Pleasure to see you again",username="Good Bye")
        
-       return render_template("index.html",error="Msg- Login to give review on book",username="Welcome")
+       return "working"
 
 
 # after login main (book) section start here
