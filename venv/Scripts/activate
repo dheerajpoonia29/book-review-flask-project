@@ -46,7 +46,7 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-VIRTUAL_ENV="$(if [ "$OSTYPE" "==" "cygwin" ]; then cygpath -u 'C:\Users\fsociety\DOCUME~1\celebal\HACTUR~1\FLASK-~1\venv'; else echo '/C/Users/fsociety/DOCUME~1/celebal/HACTUR~1/FLASK-~1/venv'; fi;)"
+VIRTUAL_ENV='D:\githubRepos\bookReview-projectPythonFlask\venv'
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"

@@ -1,11 +1,9 @@
-from flask import Flask, session
+from flask import Flask, session, render_template, request
 from flask_session import Session
-from flask import Flask, render_template, request
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
 
 app = Flask(__name__)
-
 
 engine = create_engine('postgres://ntcwaduvpgeowm:b5459817675574612c7cf55ba6ffbb0752457b10239c15c7084ef858b9277349@ec2-54-83-17-151.compute-1.amazonaws.com:5432/dce25fb79tcjcv', echo = True)
 db = scoped_session(sessionmaker(bind=engine))
