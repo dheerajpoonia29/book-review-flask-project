@@ -3,6 +3,10 @@ from flask_session import Session
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
 
+# sqlalchemy is python library which provide object relation mapper module for sql 
+# thourgh orm we communicate with db and then sql is used to manipulate data
+# orm is just like pipline between server and database 
+
 app = Flask(__name__)
 
 engine = create_engine('postgres://ntcwaduvpgeowm:b5459817675574612c7cf55ba6ffbb0752457b10239c15c7084ef858b9277349@ec2-54-83-17-151.compute-1.amazonaws.com:5432/dce25fb79tcjcv', echo = True)
